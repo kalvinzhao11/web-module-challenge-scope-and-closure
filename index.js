@@ -119,13 +119,23 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
+console.log("")
 
 function scoreboard(getInningScore, inning, inningsCount) {
   /* CODE HERE */
   let scores = ""
   let suffix
+  let home = 0
+  let away = 0
   for(let x = 0; x < inningsCount; x++) {
-    if(String(x).slice(-1) === "1") {
+    let inningScore = getInningScore(inning, home, away)
+    // console.log(inningScore[home])
+    // console.log(inningScore)
+    home = inningScore.home
+    // console.log(inningScore.home)
+    away = inningScore.away
+    // console.log(home)
+    if(String(x).slice(-1) == 1) {
       suffix = "st"
     } else if (String(x).slice(-1) == 2) {
       suffix = "nd"
@@ -134,9 +144,13 @@ function scoreboard(getInningScore, inning, inningsCount) {
     } else {
       suffix = "th"
     }
-    scores += `${x}${suffix} \n`
+    if (x < inningsCount-1) {
+      scores += `${x}${suffix} inning: Away ${away} - Home ${home}\n`
+    } else {
+      scores += `Final Score: Away ${away} - Home ${home}`
+    }
   }
   return scores
 }
-// console.log(scoreboard(8))
+console.log(scoreboard(final, addScore, 8))
 
