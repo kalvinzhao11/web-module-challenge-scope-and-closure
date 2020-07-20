@@ -27,10 +27,20 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ *  
+ * The difference between  counter 1 and counter 2 is that counter 2 does not reset so whenever you call on the function the count increments by one.  
+ * But with counter 1 the count would reset if you set a variable equal to the function.  An example of that would be like an example that we did during 
+ * lecture.  You can set the const basketball equal to counterMaker() and when you run it count would increment by one.  If you create another const like 
+ * soccer equal to counterMaker(), the score would be equal to zero and it would increment by one everytime you run it.  
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * counter 1 uses a closure because the count variable is inside in the parent function and the child is accessing it
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * if you need the counter to be resetted everytime you set a variable equal to counterMaker() then you would use counter1, if you need to access count outside of 
+ * the function and/ or never never want the count automatically resetted then you would use counter2
  *
 */
 
@@ -50,7 +60,6 @@ let count = 0;
 function counter2() {
   return count++;
 }
-
 
 /* Task 2: inning() 
 
