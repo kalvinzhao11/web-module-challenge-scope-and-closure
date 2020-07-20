@@ -42,7 +42,10 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+A closure is a child function that access variable from the child function
+
 2. Study the following code, then answer the questions below.
+
 
 ```js
 function personalDice(name){
@@ -63,8 +66,11 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+the closure is used inside the console.log because it is accessing the name aguement from the parent function
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+the name variable is always the same and the newrole can be changed
 c. What is the lexical scope of `newRoll`? 
+the lexical scope of newRoll is function()
 
 ### Task 2c - Exit Ticket
 

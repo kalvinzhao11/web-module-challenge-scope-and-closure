@@ -27,10 +27,20 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ *  
+ * The difference between  counter 1 and counter 2 is that counter 2 does not reset so whenever you call on the function the count increments by one.  
+ * But with counter 1 the count would reset if you set a variable equal to the function.  An example of that would be like an example that we did during 
+ * lecture.  You can set the const basketball equal to counterMaker() and when you run it count would increment by one.  If you create another const like 
+ * soccer equal to counterMaker(), the score would be equal to zero and it would increment by one everytime you run it.  
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * counter 1 uses a closure because the count variable is inside in the parent function and the child is accessing it
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * if you need the counter to be resetted everytime you set a variable equal to counterMaker() then you would use counter1, if you need to access count outside of 
+ * the function and/ or never never want the count automatically resetted then you would use counter2
  *
 */
 
@@ -51,16 +61,19 @@ function counter2() {
   return count++;
 }
 
-
 /* Task 2: inning() 
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+const addScore = function inning(score){
 
     /*Code Here*/
+    let randomNum = Math.round(Math.random()*2)
+    score += randomNum
+    return score
 
 }
+console.log(addScore(4))
 
 /* Task 3: finalScore()
 
@@ -76,11 +89,15 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+let final = function finalScore(score, home, away){
 
   /*Code Here*/
+  home = score(home)
+  away = score(away)
+  return {home, away}
 
 }
+console.log(final(addScore, 4, 2))
 
 /* Task 4: 
 
@@ -102,9 +119,38 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
+console.log("")
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScore, inning, inningsCount) {
   /* CODE HERE */
+  let scores = ""
+  let suffix
+  let home = 0
+  let away = 0
+  for(let x = 0; x < inningsCount; x++) {
+    let inningScore = getInningScore(inning, home, away)
+    // console.log(inningScore[home])
+    // console.log(inningScore)
+    home = inningScore.home
+    // console.log(inningScore.home)
+    away = inningScore.away
+    // console.log(home)
+    if(String(x).slice(-1) == 1) {
+      suffix = "st"
+    } else if (String(x).slice(-1) == 2) {
+      suffix = "nd"
+    } else if (String(x).slice(-1) == 3) {
+      suffix = "rd"
+    } else {
+      suffix = "th"
+    }
+    if (x < inningsCount-1) {
+      scores += `${x}${suffix} inning: Away ${away} - Home ${home}\n`
+    } else {
+      scores += `Final Score: Away ${away} - Home ${home}`
+    }
+  }
+  return scores
 }
-
+console.log(scoreboard(final, addScore, 8))
 
