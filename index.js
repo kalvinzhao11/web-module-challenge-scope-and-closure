@@ -65,11 +65,15 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+const addScore = function inning(score){
 
     /*Code Here*/
+    let randomNum = Math.round(Math.random()*2)
+    score += randomNum
+    return score
 
 }
+console.log(addScore(4))
 
 /* Task 3: finalScore()
 
@@ -85,11 +89,15 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+let final = function finalScore(score, home, away){
 
   /*Code Here*/
+  home = score(home)
+  away = score(away)
+  return {home, away}
 
 }
+console.log(final(addScore, 4, 2))
 
 /* Task 4: 
 
@@ -112,8 +120,23 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScore, inning, inningsCount) {
   /* CODE HERE */
+  let scores = ""
+  let suffix
+  for(let x = 0; x < inningsCount; x++) {
+    if(String(x).slice(-1) === "1") {
+      suffix = "st"
+    } else if (String(x).slice(-1) == 2) {
+      suffix = "nd"
+    } else if (String(x).slice(-1) == 3) {
+      suffix = "rd"
+    } else {
+      suffix = "th"
+    }
+    scores += `${x}${suffix} \n`
+  }
+  return scores
 }
-
+// console.log(scoreboard(8))
 
